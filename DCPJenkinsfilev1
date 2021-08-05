@@ -15,20 +15,7 @@ pipeline {
     }
   stages{
      
-    stage('SCM Checkout'){
-	steps {
-        script {
-      def scmVars = checkout([
-        $class: 'GitSCM'
-      ])
-      echo "env.GIT_COMMIT"
-      echo "${env.GIT_COMMIT}"
-    }
-       checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Powertrain_Ford', url: 'https://github.com/Deloitte/Powertrain.git']]])
-        
-                
-    }
-	}
+   
     
 
        
