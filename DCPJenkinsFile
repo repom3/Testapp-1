@@ -1,3 +1,7 @@
+def loadValuesYaml(){
+  def valuesYaml = readYaml (file: './metadata.yaml')
+  return valuesYaml;
+}
 def repoName
 def repoURL
 def branchName
