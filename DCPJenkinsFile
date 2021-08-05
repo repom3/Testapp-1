@@ -111,7 +111,8 @@ pipeline {
          IMAGENAME="$(grep "Successfully tagged" SomeFile.txt | cut -d' ' -f 3)"
          echo "TwislockImageName=http://${IMAGENAME}" >> variable.properties
          '''*/
-        	     
+        sh "echo apiVersion=${valuesYaml.apiVersion} >> variable.properties"
+                sh "echo label=${valuesYaml.metadata.labels.name} >> variable.properties"	     
          sh "echo jobName=${env.JOB_NAME} >> variable.properties"
 sh "echo buildNumber=${env.BUILD_NUMBER} >> variable.properties"
 sh "echo repoName=$repoName >> variable.properties"
