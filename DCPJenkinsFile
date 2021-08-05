@@ -1,3 +1,7 @@
+def loadValuesYaml(){
+  def valuesYaml = readYaml (file: './metadata.yaml')
+  return valuesYaml;
+}
 def repoName
 def repoURL
 def branchName
@@ -24,7 +28,7 @@ pipeline {
       echo "env.GIT_COMMIT"
       echo "${env.GIT_COMMIT}"
     }
-       checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Powertrain_Ford', url: 'https://github.com/Deloitte/Powertrain.git']]])
+       checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'bac4c166-5d89-4916-aea2-dfc67258a89e', url: 'https://github.com/mudaliar20/PowerTrain.git']]])
         
                 
     }
@@ -92,7 +96,7 @@ pipeline {
     }*/  
   
 	
-     stage('Test') {
+       stage('Test') {
 	 steps{
 	 script{
 	 repoName = determineRepoName()
@@ -107,7 +111,8 @@ pipeline {
          IMAGENAME="$(grep "Successfully tagged" SomeFile.txt | cut -d' ' -f 3)"
          echo "TwislockImageName=http://${IMAGENAME}" >> variable.properties
          '''*/
-        	     
+        sh "echo apiVersion=${valuesYaml.apiVersion} >> variable.properties"
+                sh "echo label=${valuesYaml.metadata.labels.name} >> variable.properties"	     
          sh "echo jobName=${env.JOB_NAME} >> variable.properties"
 sh "echo buildNumber=${env.BUILD_NUMBER} >> variable.properties"
 sh "echo repoName=$repoName >> variable.properties"
@@ -149,7 +154,4 @@ String determineRepoURL() {
 String getGitBranchName() {
     return scm.branches[0].name.tokenize("*")[0].split("\\/")[1]
 }
-def loadValuesYaml(){
-  def valuesYaml = readYaml (file: './metadata.yaml')
-  return valuesYaml;
-}
+
