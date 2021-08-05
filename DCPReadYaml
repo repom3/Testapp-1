@@ -1,0 +1,23 @@
+def loadValuesYaml(){
+  def valuesYaml = readYaml (file: './metadata.yaml')
+  return valuesYaml;
+}
+
+pipeline {
+  agent any
+  stages {
+    stage('CICD Initialize') {
+      steps {
+        script{
+          valuesYaml = loadValuesYaml()
+          println valuesYaml.getClass()
+        }
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo valuesYaml.apiVersion
+      }
+    }
+  }
+}
