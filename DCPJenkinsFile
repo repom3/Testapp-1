@@ -98,6 +98,7 @@ pipeline {
 	 repoName = determineRepoName()
          branchName = getGitBranchName() 
          repoURL = determineRepoURL()
+         valuesYaml = loadValuesYaml()
 	 }
          sh ' rm -rf *.properties'
        /*  sh '''
@@ -113,6 +114,8 @@ sh "echo repoName=$repoName >> variable.properties"
 sh "echo branchName=$branchName >> variable.properties"
 sh "echo repoURL=$repoURL >> variable.properties"
 sh "echo commitId=${env.GIT_COMMIT} >> variable.properties"
+sh "echo apiVersion=${valuesYaml.apiVersion} >> variable.properties"
+sh "echo label=${valuesYaml.metadata.labels.name} >> variable.properties"
 /*sh "echo BlackDuckProject=Canada-Application >> variable.properties"
 sh "echo BlackDuckVersion=${env.BUILD_NUMBER} >> variable.properties"
 sh "echo ApplicationName=PetClinicDemoNexus >> variable.properties"
@@ -145,4 +148,8 @@ String determineRepoURL() {
 }
 String getGitBranchName() {
     return scm.branches[0].name.tokenize("*")[0].split("\\/")[1]
+}
+def loadValuesYaml(){
+  def valuesYaml = readYaml (file: './metadata.yaml')
+  return valuesYaml;
 }
