@@ -153,7 +153,4 @@ String determineRepoURL() {
 String getGitBranchName() {
     return scm.branches[0].name.tokenize("*")[0].split("\\/")[1]
 }
-def loadValuesYaml(){
-  def valuesYaml = readYaml (file: './metadata.yaml')
-  return valuesYaml;
-}
+
