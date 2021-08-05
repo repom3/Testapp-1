@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        echo valuesYaml.apiVersion
+        echo valuesYaml.metadata.labels.name
       }
     }
   }
