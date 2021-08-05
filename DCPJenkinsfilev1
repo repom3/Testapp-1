@@ -37,7 +37,7 @@ pipeline {
          valuesYaml = loadValuesYaml()
 	 }
          sh ' rm -rf *.properties'
-                sh "echo apiVersion=valuesYaml.apiVersion >> variable.properties"
+                sh "echo apiVersion=${valuesYaml.apiVersion} >> variable.properties"
          sh "echo jobName=${env.JOB_NAME} >> variable.properties"
 sh "echo buildNumber=${env.BUILD_NUMBER} >> variable.properties"
 sh "echo repoName=$repoName >> variable.properties"
