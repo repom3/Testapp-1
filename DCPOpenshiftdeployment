@@ -13,7 +13,7 @@ pipeline {
             def buildNumber = Jenkins.instance.getItem('Powertrain').lastSuccessfulBuild.number
             print buildNumber
             sh '''#!/bin/bash -l
-            oc login --token=sha256~fDOble1kF17N7xQPrfIz-CdSWPJZb3ZV0Q5pdOmLlCI --server=https://api.openshift.68kv.p2.openshiftapps.com:6443
+            oc login --token=sha256~4MtE_ZkMA5QMV1HxFxOzsA_6_dpLd2c_2y2gM_HyNlk --server=https://api.openshift.68kv.p2.openshiftapps.com:6443
             oc project powertrain
             OUT=$(oc get deployment|grep powertrain|awk '{print $1}')
             echo $OUT
