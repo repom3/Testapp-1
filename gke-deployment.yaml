@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: nexus
-        image: gcr.io/ford-project-319713/powertrain:@IMG_TAG@
+        #image: gcr.io/ford-project-319713/powertrain:@IMG_TAG@
+        image: gangavarapun/powertrain:17
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
