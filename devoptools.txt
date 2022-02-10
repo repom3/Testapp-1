@@ -1,0 +1,9 @@
+git- vcd tool
+jenkin-cicd
+maven -automation
+code -sonarcude vera code deepscan
+automation-selenium,cucumber,appium, test complete
+cm -ansible, chef, puppet, salt engine,cf engine, juju , rudder
+monitoring-nagios, splunk, gralena,data dog,new rolic,elk
+automation scripting lan-shell script,power shell, python, groovy, ruby on rails ,yaml.
+
